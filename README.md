@@ -4,20 +4,36 @@
 
 由 html template 模板，自动插入 link preload 或者 link prefetch
 
-- type
+- template:string 模板 html
+- filename:string 输出文件的名称
+- links:[]
+  - rel
   - preload
   - prefetch
-- as --- limit preload
-  - script
-  - style
-  - ...
-- attrs(preload 可以增加一些参数，比如 media 等等)
+- as:string --- limit preload
+  - script: JavaScript 文件。
+  - style: 样式表。
+  - font: 字体文件。
+  - audio: 音频文件。
+  - image: 图片文件。
+  - video: 视频文件。
+  - document: 一个将要被嵌入到<frame>或<iframe>内部的 HTML 文档。
+  - worker: 一个 JavaScript 的 web worker 或 shared worker。
+  - embed: 一个将要被嵌入到<embed>元素内部的资源。
+  - fetch: 那些将要通过 fetch 和 XHR 请求来获取的资源，比如一个 ArrayBuffer 或 JSON 文件。
+  - object: 一个将会被嵌入到<embed>元素内的文件。
+  - track: WebVTT 文件。
+- attrs:[]（preload 可以增加一些参数，比如 media 等等）
   - media
   - type
   - ...
-- href
-  - 完整地址，一般表示 cdn 地址
-  - chunkName（表示入口模块，想像一个场景，多入口单页面文件，每个对应一个 template，在输入账号密码的页面可以预先加载登陆后的页面的资源，比如 login 页面增加了 preload:main，在输入完密码之后说不定 main 资源已经加载完成，登陆之后若需要请求 main 的 js 文件，直接通过 304 缓存中获取即可）
-- inject
+- crossorigin:boolean
+  - true
+  - false
+- inject:string
   - head
   - body
+- hrefs:[]
+  - 完整地址，一般表示 cdn 地址
+- chunks:[]
+  - chunkName（表示入口模块，想像一个场景，多入口单页面文件，每个对应一个 template，在输入账号密码的页面可以预先加载登陆后的页面的资源，比如 login 页面增加了 preload:main，在输入完密码之后说不定 main 资源已经加载完成，登陆之后若需要请求 main 的 js 文件，直接通过 304 缓存中获取即可）

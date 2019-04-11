@@ -6,9 +6,10 @@
   "author": "jsjzh <kimimi_king@163.com>",
   "license": "MIT",
   "scripts": {
-    "start": "webpack --config ./test"
+    "start": "webpack --config ./test/index.js"
   },
   "dependencies": {
+    "parse5": "^5.1.0",
     "webpack": "^4.29.6"
   },
   "devDependencies": {
