@@ -1,4 +1,6 @@
+import _ from 'lodash'
 console.log('test main')
+console.log(_)
 
 const button = document.createElement('button')
 button.innerText = 'click to login'
