@@ -4,6 +4,7 @@
 
 - css 的 publicPath 该怎么处理
 - 能不能不使用 indexOf 作为判断依据，因为当公共模块的文件名和其他模块文件名重复的时候，依赖会加载错误
+- 热更新 html，在 afterCompile 的时候把 html 添加监视热更新依赖
 
 ## 功能
 

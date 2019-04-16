@@ -1,7 +1,7 @@
 const path = require('path')
-const linkPreWebpackPlugin = require('../index')
+const LinkPreWebpackPlugin = require('../index')
 const { AutoWebPlugin } = require('web-webpack-plugin')
-const miniCssExtractPlugin = require('mini-css-extract-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const autoWebPlugin = new AutoWebPlugin(path.resolve(__dirname, './src/pages'), {
   // htmlMinify: true,
@@ -29,7 +29,7 @@ module.exports = {
         test: /\.css$/,
         use: [
           {
-            loader: miniCssExtractPlugin.loader,
+            loader: MiniCssExtractPlugin.loader,
             options: {
               publicPath: '/static/',
               hmr: true
@@ -71,12 +71,12 @@ module.exports = {
     }
   },
   plugins: [
-    new miniCssExtractPlugin({
+    new MiniCssExtractPlugin({
       filename: 'filename-[name].[hash:8].css',
       chunkFilename: 'chunkFilename-[name].[hash:8].css'
     }),
     autoWebPlugin,
-    new linkPreWebpackPlugin({
+    new LinkPreWebpackPlugin({
       filename: 'login.html',
       preload: {
         js: {
