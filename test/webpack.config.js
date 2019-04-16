@@ -88,9 +88,7 @@ module.exports = {
             }
           ],
           chunks: [
-            {
-              chunk: 'common-js'
-            },
+            { chunk: 'common-js' },
             {
               chunk: 'main',
               attrs: [{ name: 'media', value: '(max-width: 600px)' }]
@@ -117,31 +115,16 @@ module.exports = {
         js: {
           hrefs: [
             { href: 'https://cdn.bootcss.com/lodash.js/4.17.12-pre/lodash.min.js' },
-            {
-              href: 'https://cdn.bootcss.com/jquery/3.3.1/jquery.js'
-            }
+            { href: 'https://cdn.bootcss.com/jquery/3.3.1/jquery.js' }
           ],
-          chunks: [
-            {
-              chunk: 'common-js'
-            },
-            {
-              chunk: 'main'
-            }
-          ]
+          chunks: [{ chunk: 'common-js' }, { chunk: 'main' }]
         },
         css: {
           hrefs: [
             { href: 'https://cdn.bootcss.com/animate.css/3.7.0/animate.min.css' },
-            {
-              href: 'https://cdn.bootcss.com/hover.css/2.3.1/css/hover-min.css'
-            }
+            { href: 'https://cdn.bootcss.com/hover.css/2.3.1/css/hover-min.css' }
           ],
-          chunks: [
-            {
-              chunk: 'common-style'
-            }
-          ]
+          chunks: [{ chunk: 'common-style' }]
         }
       }
     })
