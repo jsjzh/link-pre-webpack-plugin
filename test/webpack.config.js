@@ -95,8 +95,7 @@ module.exports = {
               chunk: 'main',
               attrs: [{ name: 'media', value: '(max-width: 600px)' }]
             }
-          ],
-          as: 'script'
+          ]
         },
         css: {
           hrefs: [
@@ -111,8 +110,7 @@ module.exports = {
               chunk: 'common-style',
               attrs: [{ name: 'media', value: '(max-width: 600px)' }]
             }
-          ],
-          as: 'style'
+          ]
         }
         // another: [{ hrefs: [], chunks: [], as: 'font' }, { hrefs: [], chunks: [], as: 'font' }]
       }
