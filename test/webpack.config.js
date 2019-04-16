@@ -19,7 +19,7 @@ module.exports = {
   // },
   output: {
     path: path.resolve(__dirname, './dist'),
-    // publicPath: '/static/',
+    publicPath: '/static/',
     filename: 'filename-[name].[hash:8].js',
     chunkFilename: 'chunkFilename-[name].[hash:8].js'
   },
@@ -31,7 +31,7 @@ module.exports = {
           {
             loader: miniCssExtractPlugin.loader,
             options: {
-              // publicPath: '/static/',
+              publicPath: '/static/',
               hmr: true
             }
           },
@@ -64,7 +64,7 @@ module.exports = {
         },
         styles: {
           name: 'common-style',
-          test: /\.css$/,
+          test: /\.css$/
           // enforce: true
         }
       }
@@ -76,26 +76,84 @@ module.exports = {
       chunkFilename: 'chunkFilename-[name].[hash:8].css'
     }),
     autoWebPlugin,
-    new linkPreWebpackPlugin({ filename: 'login.html' }, [
-      {
-        rel: 'preload',
-        as: 'style',
-        hrefs: [
-          'https://cdn.bootcss.com/animate.css/3.7.0/animate.min.css',
-          'https://cdn.bootcss.com/hover.css/2.3.1/css/hover-min.css'
-        ],
-        chunks: ['common-style']
-      },
-      {
-        rel: 'preload',
-        as: 'script',
-        hrefs: [
-          'https://cdn.bootcss.com/jquery/3.3.1/jquery.js',
-          'https://cdn.bootcss.com/lodash.js/4.17.12-pre/lodash.min.js'
-        ],
-        chunks: ['common-js', 'main']
+    new linkPreWebpackPlugin({
+      filename: 'login.html',
+      preload: {
+        js: {
+          hrefs: [
+            { href: 'https://cdn.bootcss.com/lodash.js/4.17.12-pre/lodash.min.js' },
+            {
+              href: 'https://cdn.bootcss.com/jquery/3.3.1/jquery.js',
+              attrs: [{ name: 'media', value: '(max-width: 600px)' }]
+            }
+          ],
+          chunks: [
+            {
+              chunk: 'common-js'
+            },
+            {
+              chunk: 'main',
+              attrs: [{ name: 'media', value: '(max-width: 600px)' }]
+            }
+          ],
+          as: 'script'
+        },
+        css: {
+          hrefs: [
+            { href: 'https://cdn.bootcss.com/animate.css/3.7.0/animate.min.css' },
+            {
+              href: 'https://cdn.bootcss.com/hover.css/2.3.1/css/hover-min.css',
+              attrs: [{ name: 'media', value: '(max-width: 600px)' }]
+            }
+          ],
+          chunks: [
+            {
+              chunk: 'common-style',
+              attrs: [{ name: 'media', value: '(max-width: 600px)' }]
+            }
+          ],
+          as: 'style'
+        }
+        // another: [{ hrefs: [], chunks: [], as: 'font' }, { hrefs: [], chunks: [], as: 'font' }]
       }
-    ])
+      // prefetch: {
+      //   js: {
+      //     hrefs: [],
+      //     chunks: [],
+      //     as: 'script'
+      //   },
+      //   css: {
+      //     hrefs: [],
+      //     chunks: [],
+      //     as: 'style'
+      //   },
+      //   another: {
+      //     hrefs: [],
+      //     chunks: [],
+      //     as: 'font'
+      //   }
+      // }
+    })
+    // new linkPreWebpackPlugin({ filename: 'login.html' }, [
+    //   {
+    //     rel: 'preload',
+    //     as: 'style',
+    //     hrefs: [
+    //       'https://cdn.bootcss.com/animate.css/3.7.0/animate.min.css',
+    //       'https://cdn.bootcss.com/hover.css/2.3.1/css/hover-min.css'
+    //     ],
+    //     chunks: ['common-style']
+    //   },
+    //   {
+    //     rel: 'preload',
+    //     as: 'script',
+    //     hrefs: [
+    //       'https://cdn.bootcss.com/jquery/3.3.1/jquery.js',
+    //       'https://cdn.bootcss.com/lodash.js/4.17.12-pre/lodash.min.js'
+    //     ],
+    //     chunks: ['common-js', 'main']
+    //   }
+    // ])
     // new linkPreWebpackPlugin(
     //   {
     //     template: './test/src/pages/main/index.html',
