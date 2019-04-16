@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import '../../common/index.css'
 console.log('test login')
 console.log(_)
 

@@ -1,6 +1,7 @@
 const path = require('path')
 const linkPreWebpackPlugin = require('../index')
 const { AutoWebPlugin } = require('web-webpack-plugin')
+const miniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const autoWebPlugin = new AutoWebPlugin(path.resolve(__dirname, './src/pages'), {
   // htmlMinify: true,
@@ -18,13 +19,31 @@ module.exports = {
   // },
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: 'static/',
-    filename: '[name].[hash:8].js',
+    // publicPath: '/static/',
+    filename: 'filename-[name].[hash:8].js',
+    chunkFilename: 'chunkFilename-[name].[hash:8].js'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: miniCssExtractPlugin.loader,
+            options: {
+              // publicPath: '/static/',
+              hmr: true
+            }
+          },
+          'css-loader'
+        ]
+      }
+    ]
   },
   optimization: {
     splitChunks: {
       chunks: 'all', // 共有三个值可选：initial(初始模块)、async(按需加载模块)和all(全部模块)
-      minSize: 30000, // 模块超过30k自动被抽离成公共模块
+      minSize: 1, // 模块超过30k自动被抽离成公共模块
       minChunks: 1, // 模块被引用>=1次，便分割
       maxAsyncRequests: 5, // 异步加载chunk的并发请求数量<=5
       maxInitialRequests: 3, // 一个入口并发加载的chunk数量<=3
@@ -39,13 +58,23 @@ module.exports = {
           reuseExistingChunk: true // 默认使用已有的模块
         },
         common: {
+          name: 'common-js',
           test: /[\\/]node_modules[\\/]/, // 表示默认拆分node_modules中的模块
           priority: -10
+        },
+        styles: {
+          name: 'common-style',
+          test: /\.css$/,
+          // enforce: true
         }
       }
     }
   },
   plugins: [
+    new miniCssExtractPlugin({
+      filename: 'filename-[name].[hash:8].css',
+      chunkFilename: 'chunkFilename-[name].[hash:8].css'
+    }),
     autoWebPlugin,
     new linkPreWebpackPlugin({ filename: 'login.html' }, [
       {
@@ -54,8 +83,8 @@ module.exports = {
         hrefs: [
           'https://cdn.bootcss.com/animate.css/3.7.0/animate.min.css',
           'https://cdn.bootcss.com/hover.css/2.3.1/css/hover-min.css'
-        ]
-        // chunks: ['common']
+        ],
+        chunks: ['common-style']
       },
       {
         rel: 'preload',
@@ -64,7 +93,7 @@ module.exports = {
           'https://cdn.bootcss.com/jquery/3.3.1/jquery.js',
           'https://cdn.bootcss.com/lodash.js/4.17.12-pre/lodash.min.js'
         ],
-        chunks: ['common', 'main']
+        chunks: ['common-js', 'main']
       }
     ])
     // new linkPreWebpackPlugin(
