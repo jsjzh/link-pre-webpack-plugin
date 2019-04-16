@@ -1,6 +1,6 @@
 {
   "name": "link-pre-webpack-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "repository": "git@github.com:jsjzh/link-pre-webpack-plugin.git",
   "author": "jsjzh <kimimi_king@163.com>",
