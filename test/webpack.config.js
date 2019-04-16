@@ -112,72 +112,38 @@ module.exports = {
             }
           ]
         }
-        // another: [{ hrefs: [], chunks: [], as: 'font' }, { hrefs: [], chunks: [], as: 'font' }]
+      },
+      prefetch: {
+        js: {
+          hrefs: [
+            { href: 'https://cdn.bootcss.com/lodash.js/4.17.12-pre/lodash.min.js' },
+            {
+              href: 'https://cdn.bootcss.com/jquery/3.3.1/jquery.js'
+            }
+          ],
+          chunks: [
+            {
+              chunk: 'common-js'
+            },
+            {
+              chunk: 'main'
+            }
+          ]
+        },
+        css: {
+          hrefs: [
+            { href: 'https://cdn.bootcss.com/animate.css/3.7.0/animate.min.css' },
+            {
+              href: 'https://cdn.bootcss.com/hover.css/2.3.1/css/hover-min.css'
+            }
+          ],
+          chunks: [
+            {
+              chunk: 'common-style'
+            }
+          ]
+        }
       }
-      // prefetch: {
-      //   js: {
-      //     hrefs: [],
-      //     chunks: [],
-      //     as: 'script'
-      //   },
-      //   css: {
-      //     hrefs: [],
-      //     chunks: [],
-      //     as: 'style'
-      //   },
-      //   another: {
-      //     hrefs: [],
-      //     chunks: [],
-      //     as: 'font'
-      //   }
-      // }
     })
-    // new linkPreWebpackPlugin({ filename: 'login.html' }, [
-    //   {
-    //     rel: 'preload',
-    //     as: 'style',
-    //     hrefs: [
-    //       'https://cdn.bootcss.com/animate.css/3.7.0/animate.min.css',
-    //       'https://cdn.bootcss.com/hover.css/2.3.1/css/hover-min.css'
-    //     ],
-    //     chunks: ['common-style']
-    //   },
-    //   {
-    //     rel: 'preload',
-    //     as: 'script',
-    //     hrefs: [
-    //       'https://cdn.bootcss.com/jquery/3.3.1/jquery.js',
-    //       'https://cdn.bootcss.com/lodash.js/4.17.12-pre/lodash.min.js'
-    //     ],
-    //     chunks: ['common-js', 'main']
-    //   }
-    // ])
-    // new linkPreWebpackPlugin(
-    //   {
-    //     template: './test/src/pages/main/index.html',
-    //     filename: 'main.html'
-    //   },
-    //   [
-    //     {
-    //       rel: 'preload',
-    //       as: 'style',
-    //       hrefs: [
-    //         'https://cdn.bootcss.com/animate.css/3.7.0/animate.min.css',
-    //         'https://cdn.bootcss.com/hover.css/2.3.1/css/hover-min.css'
-    //       ]
-    //       // chunks: ['common']
-    //     },
-    //     {
-    //       rel: 'preload',
-    //       as: 'script',
-    //       hrefs: [
-    //         'https://cdn.bootcss.com/jquery/3.3.1/jquery.js',
-    //         'https://cdn.bootcss.com/lodash.js/4.17.12-pre/lodash.min.js'
-    //       ],
-    //       chunks: ['common']
-    //       // inject: 'head'
-    //     }
-    //   ]
-    // )
   ]
 }
