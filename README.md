@@ -2,12 +2,8 @@
 
 ## TODO
 
-- html 标签中已有的代码片段处理
-- 验证 html 处理的 plugin 能否支持，web-webpack-plugin and html-plugin-plugin
-- publicPath 处理
-- css chunks 块处理
-- js 公共块处理
-- css 公共块处理
+- css 的 publicPath 该怎么处理
+- 能不能不使用 indexOf 作为判断依据，因为当公共模块的文件名和其他模块文件名重复的时候，依赖会加载错误
 
 ## 功能
 
