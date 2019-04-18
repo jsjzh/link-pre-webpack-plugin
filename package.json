@@ -1,10 +1,24 @@
 {
   "name": "link-pre-webpack-plugin",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "main": "index.js",
   "repository": "git@github.com:jsjzh/link-pre-webpack-plugin.git",
   "author": "jsjzh <kimimi_king@163.com>",
   "license": "MIT",
+  "keywords": [
+    "webpack",
+    "webpack4",
+    "webpack-plugin",
+    "html",
+    "plugin",
+    "link",
+    "preload",
+    "prefetch",
+    "js",
+    "javascript",
+    "css",
+    "css3"
+  ],
   "scripts": {
     "start": "webpack --config ./test/webpack.config.js"
   },
