@@ -76,8 +76,7 @@ module.exports = {
       chunkFilename: 'chunkFilename-[name].[hash:8].css'
     }),
     autoWebPlugin,
-    new LinkPreWebpackPlugin({
-      filename: 'login.html',
+    new LinkPreWebpackPlugin('login.html', {
       preload: {
         js: {
           hrefs: [
