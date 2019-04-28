@@ -87,7 +87,7 @@ module.exports = {
             }
           ],
           chunks: [
-            { chunk: 'common-js' },
+            { chunk: /common\-j(s)?/ },
             {
               chunk: 'main',
               attrs: [{ name: 'media', value: '(max-width: 600px)' }]
